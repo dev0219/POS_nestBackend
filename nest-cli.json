@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/api/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": false,
+    "tsConfigPath": "apps/api/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/api",
+  "projects": {
+    "api": {
+      "type": "application",
+      "root": "apps/api",
+      "entryFile": "main",
+      "sourceRoot": "apps/api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api/tsconfig.app.json"
+      }
+    },
+    "bs": {
+      "type": "application",
+      "root": "apps/bs",
+      "entryFile": "main",
+      "sourceRoot": "apps/bs/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/bs/tsconfig.app.json"
+      }
+    },
+    "events": {
+      "type": "library",
+      "root": "libs/events",
+      "entryFile": "index",
+      "sourceRoot": "libs/events/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/events/tsconfig.lib.json"
+      }
+    },
+    "domain": {
+      "type": "library",
+      "root": "libs/domain",
+      "entryFile": "index",
+      "sourceRoot": "libs/domain/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/domain/tsconfig.lib.json"
+      }
+    },
+    "cache": {
+      "type": "library",
+      "root": "libs/cache",
+      "entryFile": "index",
+      "sourceRoot": "libs/cache/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/cache/tsconfig.lib.json"
+      }
+    },
+    "remote-storage": {
+      "type": "library",
+      "root": "libs/remote-storage",
+      "entryFile": "index",
+      "sourceRoot": "libs/remote-storage/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/remote-storage/tsconfig.lib.json"
+      }
+    },
+    "ps": {
+      "type": "application",
+      "root": "apps/ps",
+      "entryFile": "main",
+      "sourceRoot": "apps/ps/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ps/tsconfig.app.json"
+      }
+    }
+  }
+}

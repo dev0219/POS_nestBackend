@@ -1,0 +1,1 @@
+{"version":3,"file":"RequestEvent.js","sourceRoot":"","sources":["../../../../../../libs/domain/src/RequestEvent.ts"],"names":[],"mappings":";;;AAAA,MAAsB,YAAY;IAIhC,YAAY,OAAmB;QAC7B,IAAI,CAAC,SAAS,GAAG,OAAO,CAAC;IAC3B,CAAC;IAED,SAAS;QACP,OAAO,IAAI,CAAC,MAAM,CAAC;IACrB,CAAC;IAED,UAAU;QACR,OAAO,IAAI,CAAC,SAAS,CAAC;IACxB,CAAC;CACF;AAfD,oCAeC"}

@@ -1,0 +1,80 @@
+erDiagram
+    BUSINESS {
+        string(255) ID PK "UUID V2 NN"
+        string(200) NAME ""
+        string(500) ADDRESS UK
+        string(100) GPS UK "GPS COORDINATE"
+        string(100) PHONE "CAN BE NULL"
+        string(255) BUSINESS_TYPE_ID FK
+        string(255) BUSINESS_CATEGORY_ID FK
+        datetime    CREATED_AT
+        datetime    UPDATED_AT
+    }
+
+    BUSINESS_TYPE {
+        string(255) ID PK "UUID V2"
+        string(200) NAME
+        datetime    CREATED_AT
+        datetime    UPDATED_AT
+    }
+    BUSINESS_CATEGORY {
+        string(255) ID PK "UUID V2"
+        string(200) NAME
+        string(255) BUSINESS_TYPE_ID FK
+        datetime    CREATED_AT
+        datetime    UPDATED_AT
+        integer     BUSINESS_COUNT "CAN BE NULL"
+    }
+
+    BUSINESS_SUGGEST_CATEGORY {
+        string(255) ID PK "UUID V2"
+        string(255) BUSINESS_ID FK
+        string(255) BUSINESS_TYPE_ID FK
+        boolean     IS_ACTIVE
+        datetime    CREATED_AT
+        datetime    UPDATED_AT
+    }
+
+    BUSINESS_EVENT {
+        string(255) UUID PK "UUID V2"
+        integer     VERSION "AUTO INCREMENT"
+        json        PAYLOAD
+        integer     EVENT_TYPE "ENUM"
+        datetime    CREATED_AT
+    }
+
+    BUSINESS_TYPE_PRODUCT_CATEGORY {
+        UUID BUSINESS_TYPE_ID FK
+        UUID PRODUCT_CATEGORY_ID FK
+    }
+
+    BUSINESS_PRODUCT {
+        UUID BUSINESS_ID FK
+        UUID PRODUCT_ID FK
+    }
+
+    BUSINESS one or more to one or more BUSINESS_PRODUCT : HAS
+    BUSINESS_PRODUCT one or more to one or more PRODUCT : HAS
+    PRODUCT one or more to one or more BUSINESS_TYPE_PRODUCT_TYPE : HAS
+    BUSINESS_TYPE one or more to one or more BUSINESS_TYPE_PRODUCT_TYPE : HAS
+
+    BUSINESS one or more to only one BUSINESS_TYPE : "BELONGS TO"
+
+    BUSINESS_TYPE only one to zero or more BUSINESS_CATEGORY : "HAS"
+    BUSINESS_TYPE zero or more to zero or more BUSINESS_SUGGEST_CATEGORY : "COULD HAS"
+
+    BUSINESS only one to only one BUSINESS_SUGGEST_CATEGORY : CREATE
+
+
+    USER only one to one or more BUSINESS : HAS
+
+
+    EVENT_HANDLER zero or one to zero or one createBusinessEvent : EXECUTE
+    EVENT_HANDLER zero or one to zero or one statusBusinessEvent : EXECUTE
+    EVENT_HANDLER zero or one to zero or one updateBusinessEvent : EXECUTE
+    EVENT_HANDLER zero or one to zero or one storeSuggestedCategory : EXECUTE
+
+    createBusinessEvent zero or more to zero or more BUSINESS_EVENT_LOGGER : LOG
+    statusBusinessEvent zero or more to zero or more BUSINESS_EVENT_LOGGER : LOG
+    updateBusinessEvent zero or more to zero or more BUSINESS_EVENT_LOGGER : LOG
+    storeSuggestedCategory zero or more to zero or more BUSINESS_EVENT_LOGGER : LOG

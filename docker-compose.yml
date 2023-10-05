@@ -1,0 +1,58 @@
+version: '3.4'
+
+services:
+  api:
+    image: wecon-api-pos
+    container_name: 'wecon-api'
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NATS_SERVER: nats:4222
+    ports:
+      - 3000:3000
+  bs:
+    image: wecon-bs
+    container_name: 'wecon-bs'
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - app=bs
+    environment:
+      BS_DB_HOST: db
+      BS_DB_PASSWORD: WeconS3cr3t!23
+      BS_DB_USERNAME: postgres
+      BS_DB_DATABASE: bs
+      NATS_SERVER: nats:4222
+    ports:
+      - 3001:3000
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: WeconS3cr3t!23
+      POSTGRES_DB: bs
+    volumes:
+      - .docker-data/postgres:/var/lib/postgresql/data
+  db-admin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: WeconS3cr3t!23
+      PGADMIN_DEFAULT_EMAIL: admin@wecon.com.mx
+    volumes:
+      - .docker-data/pgadmin:/var/lib/pgadmin
+  nats:
+    image: nats:2.9
+    command: "--http_port 8222 --jetstream --store_dir /var/lib/nats/data"
+    ports:
+        - 4222:4222
+        - 6222:6222
+        - 8222:8222
+    volumes:
+        - .docker-data/nats/data/:/var/lib/nats/data

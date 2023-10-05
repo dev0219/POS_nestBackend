@@ -1,0 +1,41 @@
+erDiagram
+    PRODUCT {
+        string(255) ID PK "UUID V2"
+        string(48)  BARCODE
+        string(200) NAME
+        string(200) SHORT_NAME
+        INT         MEASURE "ENUM OF TYPES OF MEASURES"
+        string(200) DESCRIPTION
+        string(255) PRODUCT_BRAND_ID FK
+        json        PROPERTIES "JSON OF PROPERTIES OF THE PRODUCT"
+    }
+
+    PRODUCT_TYPE {
+        string(255) ID PK "UUID V2"
+        string(200) NAME
+        INT         PRODUCTS_COUNT
+    }
+
+    PRODUCT_PRODUCTTYPE {
+        string(255) PRODUCT_ID FK
+        string(255) PRODUCT_TYPE_ID FK
+    }
+
+    PRODUCT_BRAND {
+        string(255) ID PK "UUID V2"
+        string(200) NAME
+        INT         PRODUCTS_COUNT
+    }
+
+    PRODUCT_CATEGORY {
+        UUID        ID PK "UUID V2"
+        string(200) NAME
+        INT         PRODUCTS_COUNT
+    }
+
+    PRODUCT one or more to one or more PRODUCT_PRODUCTTYPE : "BELONGS TO MANY"
+    PRODUCT_PRODUCTTYPE one or more to only one PRODUCT_TYPE : "BELONGS TO"
+    PRODUCT_TYPE one or more to only one PRODUCT_CATEGORY : "BELONGS TO"
+    BUSINESS_PRODUCT only one to only one BUSINESS : "BELONGS TO"
+    PRODUCT one or more to only one PRODUCT_BRAND : "BELONGS TO"
+    PRODUCT one or more to one or more BUSINESS_PRODUCT : "BELONGS TO MANY"

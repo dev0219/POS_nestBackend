@@ -1,0 +1,1 @@
+{"version":3,"file":"BusinessCategoryInterface.js","sourceRoot":"","sources":["../../../../../../../../../apps/bs/src/database/mapper/interface/BusinessCategoryInterface.ts"],"names":[],"mappings":";;AAEA,kBAAe;IACb,IAAI,EAAE;QACJ,IAAI,EAAE,MAAM;QACZ,MAAM,EAAE,GAAG;QACX,QAAQ,EAAE,KAAK;QACf,OAAO,EAAE,+BAA+B;KACZ;CAC/B,CAAC"}

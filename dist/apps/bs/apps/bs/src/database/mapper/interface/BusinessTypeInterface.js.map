@@ -1,0 +1,1 @@
+{"version":3,"file":"BusinessTypeInterface.js","sourceRoot":"","sources":["../../../../../../../../../apps/bs/src/database/mapper/interface/BusinessTypeInterface.ts"],"names":[],"mappings":";;AAEA,kBAAe;IACb,IAAI,EAAE;QACJ,IAAI,EAAE,MAAM;QACZ,MAAM,EAAE,GAAG;QACX,QAAQ,EAAE,KAAK;QACf,OAAO,EAAE,2BAA2B;KACR;IAC9B,oBAAoB,EAAE;QACpB,IAAI,EAAE,MAAM;KACgB;CAC/B,CAAC"}
